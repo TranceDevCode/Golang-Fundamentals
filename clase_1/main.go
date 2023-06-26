@@ -19,16 +19,55 @@ func main() {
 	fmt.Println(paises["Chile"])
 	fmt.Println("-----------------------Otro Mapa------------------------------------------")
 	paises2 := map[int]string{
-		1: "Chile",
-		2: "Peru",
-		3: "Brasil",
-		4: "Mexico",
-		5: "Venezuela",
-		6: "Argentina",
-		7: "Espana",
-		8: "Dinamarca",
+		1:  "Chile",
+		2:  "Peru",
+		3:  "Brasil",
+		4:  "Mexico",
+		5:  "Venezuela",
+		6:  "Argentina",
+		7:  "Espana",
+		8:  "Dinamarca",
+		11: "USA",
 	}
 	fmt.Println(paises2)
+	//para acceder o mostrar Chile, accedo al id, que podria ser un id de una tabla
+	fmt.Println(paises2[1])
+
+	//Veamos si existe algun valor en el map
+	/*
+		Declaramos 2 variable, pais y existe
+		pais, va a tomar el nombre del pais
+		existe va a retornar un boolean
+	*/
+	fmt.Println("-----------------------IF en Map------------------------------------------")
+
+	//De esta forma podria hacer mineria de datos dentro de un map
+	pais, existe := paises2[11]
+	if existe {
+		fmt.Println("Si existe el pais: ", pais)
+	} else {
+		fmt.Println("No existe el pais: ", pais)
+	}
+
+	//Eliminar un elemento de un pais
+	fmt.Println("-----------------------Eliminando un elemento en Map------------------------------------------")
+	delete(paises2, 1)
+	fmt.Println(paises2)
+
+	//Recorriendo un map
+	fmt.Println("-----------------------Recorriendo un map con ciclo FOR------------------------------------------")
+	for id, valor := range paises2 {
+		fmt.Printf("ID: %v | Nombre: %v \n", id, valor)
+	}
+
+	fmt.Println("-----------------------Mapa que usa el profesor para sus API------------------------------------------")
+	respuesta := map[string]string{
+		"estado":  "ok",
+		"mensaje": "Metodo POST con Maps ",
+	}
+	fmt.Println(respuesta)
+	fmt.Println("estado=", respuesta["estado"])
+
 }
 
 /* //Arreglos y Slices
