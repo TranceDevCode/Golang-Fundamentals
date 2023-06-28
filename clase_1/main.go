@@ -5,6 +5,150 @@ import (
 	"reflect"
 )
 
+//Golang orientado o emulado a Programacion orientada a Objetos
+
+// Estructuras, es un objeto de datos que tiene diferentes campos, es como una especie de clase...
+func main() {
+	//Asi creamos una instancia de una estructura
+	estructura := Persona{
+		Id:     1,
+		Nombre: "Miguel O",
+		Correo: "miguel@gmail.com",
+		Edad:   35,
+	}
+	fmt.Printf("%+v \n", estructura)
+	fmt.Println(estructura)
+	fmt.Println(reflect.TypeOf(estructura))
+	fmt.Println(estructura.Nombre)
+	fmt.Println("-----------------------Segunda forma de declarar una instanciar de estructura------------------------------------------")
+	p := new(Persona)
+	p.Id = 2
+	p.Nombre = "Migue"
+	p.Correo = "migue@gmail.com"
+	p.Edad = 35
+	fmt.Println(p)
+	fmt.Printf("%+v \n", p)
+	fmt.Println(reflect.TypeOf(p)) //Me retorna *main.Persona, ese asterisco es un puntero
+
+}
+
+type Persona struct {
+	//creamos sus campos, colocarlos siempre con su primera letra en mayuscula
+	Id     int
+	Nombre string
+	Correo string
+	Edad   int
+}
+
+/* //defer y panic, utilizados para el manejo de errores
+
+func main() {
+	miFuncion()
+}
+
+func miFuncion() {
+	defer fmt.Println("Este es el mensaje final")
+	fmt.Println("Este es mi primer mensaje")
+	a := 1
+	if a == 1 {
+		panic("Se encontro un error")
+	}
+} */
+
+/* //Recursividad
+
+func main() {
+	miFuncion(0)
+}
+func miFuncion(valor int) {
+	dato := valor + 1
+	fmt.Println(dato)
+	if dato < 10 {
+		//si dato es menor que 10 se ejecuta miFunction
+		miFuncion(dato)
+	}
+} */
+
+/* // Goroutines, son funciones pero que permiten de cierta forma ser ejecutadas en hilos diferentes(canales en Golang)  y channels
+func main() {
+	//Ejemplo 1
+	fmt.Println(miFuncion("Miguel"))
+	//poner una pausa en la ejecucion de la funcion
+	time.Sleep(time.Second * 5)
+	fmt.Println(miFuncion("Teya"))
+
+	//Ejemplo 2 con channels
+	miCanal := make(chan string)
+	go func() {
+		//Ejecuto esto en mi canal que acabo de crear, para hacer que la ejecucion se haga dentro del canal,
+		//debo colocar el nombre del canal, seguido de <- y llamar a la funcion y pasarle el parametro y cierra con un () que llama a la funcion por si misma o podria poner mas codigo ahi
+		miCanal <- miFuncion("Antonio")
+	}()
+	fmt.Println(<-miCanal)
+	fmt.Println("Continuar con la ejecucion")
+
+}
+func miFuncion(parametro string) string {
+	return "hola " + parametro
+} */
+
+/* //Funciones en Golang
+
+func main() {
+	miFuncion()
+	miFuncionConParametros(2, 4)
+	fmt.Println("-----------------------Funcion con retorno------------------------------------------")
+	fmt.Println(miFuncionConRetorno("Miguel"))
+	fmt.Println("-----------------------Funcion con retorno multiple------------------------------------------")
+	//Para cuando trabajo con funcion con retorno multiple debo desectructurarla
+	nombre, nacionalidad, edad := miFuncionConRetornoMultiple()
+	fmt.Printf("Hola %v, tu eres %v y tienes %v years", nombre, nacionalidad, edad)
+	fmt.Println("-----------------------Funcion anonimas------------------------------------------")
+	//aca llamo a la funcion anomina y le paso los valores de los parametros
+	fmt.Println("la suma es igual a: ", suma(10, 12))
+	fmt.Println("-----------------------Funcion Clousure------------------------------------------")
+	Tabla := tabla(2)
+	for i := 1; i <= 10; i++ {
+		fmt.Printf("2 x %v = %v \n", i, Tabla())
+	}
+}
+func miFuncion() {
+	fmt.Println("hola mundo desde mi funcion")
+}
+
+// aca pasamos argumentos a la funcion
+func miFuncionConParametros(n1 int, n2 int) {
+	resultado := n1 + n2
+	fmt.Println("La suma es: ", resultado)
+}
+
+// Funciones con retorno simple y multiple, es como en php cuando le digo public function retorno() :string
+func miFuncionConRetorno(nombre string) string {
+	return "Tu nombre es: " + nombre
+}
+
+// Funcion con retornos multiples
+func miFuncionConRetornoMultiple() (string, string, int) {
+	return "Miguel", "Chileno", 35
+}
+
+// funciones anonimas, es decir una sin nombre
+var suma = func(numero1 int, numero2 int) int {
+	return numero1 + numero2
+}
+
+//Funciones clousure, son funciones que retornan una funcion
+
+func tabla(valor int) func() int {
+	numero := valor
+	secuencia := 0
+	return func() int {
+		secuencia++
+		return numero * secuencia
+	}
+} */
+
+/*
 // Maps, el mapa es un arreglo pero compuesto por mas de un valor, y permite almacenar en formato clave-valor, los clasicos objetos
 // mas menos en Javascript es algo asi {"id": 1, "nombre": "Chile"}, se podria decir que es algo parecido
 func main() {
@@ -34,11 +178,10 @@ func main() {
 	fmt.Println(paises2[1])
 
 	//Veamos si existe algun valor en el map
-	/*
-		Declaramos 2 variable, pais y existe
-		pais, va a tomar el nombre del pais
-		existe va a retornar un boolean
-	*/
+	//	Declaramos 2 variable, pais y existe
+	//	pais, va a tomar el nombre del pais
+	//	existe va a retornar un boolean
+	//
 	fmt.Println("-----------------------IF en Map------------------------------------------")
 
 	//De esta forma podria hacer mineria de datos dentro de un map
@@ -69,7 +212,7 @@ func main() {
 	fmt.Println("estado=", respuesta["estado"])
 
 }
-
+*/
 /* //Arreglos y Slices
 
 func main() {
