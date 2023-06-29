@@ -1,11 +1,35 @@
 package main
 
-import (
-	"fmt"
-	"reflect"
-)
+import "fmt"
 
-//Golang orientado o emulado a Programacion orientada a Objetos
+//Interfaces
+
+func main() {
+	e := Estructura{}
+	fmt.Println(e.miFuncion())
+	fmt.Println(e.Calculo(2, 5))
+}
+
+//creando la interfaces
+type EjemploInterface interface {
+	//La idea es que la interface sea el contrato de funciones que va a tener la Estructura
+	miFuncion() string
+	Calculo(n1 int, n2 int) int
+}
+
+type Estructura struct {
+}
+
+//aca amarro el contraro con (*Estructura)
+func (*Estructura) miFuncion() string {
+	return "Texto de miFuncion"
+}
+func (*Estructura) Calculo(n1 int, n2 int) int {
+	resultado := n1 + n2
+	return resultado
+}
+
+/* //Golang orientado o emulado a Programacion orientada a Objetos
 
 // Estructuras, es un objeto de datos que tiene diferentes campos, es como una especie de clase...
 func main() {
@@ -30,6 +54,10 @@ func main() {
 	fmt.Printf("%+v \n", p)
 	fmt.Println(reflect.TypeOf(p)) //Me retorna *main.Persona, ese asterisco es un puntero
 
+	fmt.Println("-----------------------Estructura anidada (Herencia)------------------------------------------")
+	categoria := Categoria{Id: 1, Nombre: "Categoria 1", Slug: "categoria-1"}
+	producto := Producto{Id: 1, Nombre: "Mesa de computador", Slug: "mesa-de-computador", Precio: 1234, CategoriaId: categoria}
+	fmt.Printf("%+v \n", producto)
 }
 
 type Persona struct {
@@ -39,6 +67,22 @@ type Persona struct {
 	Correo string
 	Edad   int
 }
+
+// Estructura anidada | Herencia (Categoriay Producto)
+type Categoria struct {
+	Id     int
+	Nombre string
+	Slug   string
+}
+
+type Producto struct {
+	Id          int
+	Nombre      string
+	Slug        string
+	Precio      int
+	CategoriaId Categoria //Este campo es de tipo Categoria, o representa una estructura categoria
+}
+*/
 
 /* //defer y panic, utilizados para el manejo de errores
 
