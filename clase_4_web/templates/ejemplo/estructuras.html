@@ -1,0 +1,57 @@
+{{ template "header" }}
+
+<!-- Inicio contenido -->
+<main class="container">
+    <h1>Estructuras</h1>
+    <h3>Declaracion de variables</h3>
+    {{with $valor :="Mi valor con TranceCode"}}
+        <p>{{ $valor }}</p>
+    {{end}}
+    <hr>
+    <h3>Valores desde Struct</h3>
+    <ul>
+        <li>Nombre: {{ .Nombre }}</li>
+        <li>Edad: {{ .Edad }}</li>
+        <li>Perfil: {{ .Perfil }}</li>
+    </ul>
+    <hr>
+    <h3>Condicionales</h3>
+    <!--
+        Operadores Logicos
+        not ! 
+        and &&
+        or ||
+
+        Operadores condicionales
+        eq ==
+        ne !=
+        lt <
+        le <=
+        gt >
+        ge >=
+    -->
+
+    {{ if ge .Edad 18}}
+        <p>Soy mayor de edad</p>
+    {{ else}}
+        <p>No soy mayor de edad</p>
+    {{ end }}
+
+    {{ if eq .Perfil 1 }}
+        <p>Soy Administrador</p>
+    {{ else }}
+        <p>Eres Usuario</p>
+    {{ end }}
+    <hr>
+    <h3>Iteraciones</h3>
+    {{.Habilidades }}
+    <ul>
+        {{ range .Habilidades }}
+            <li>{{ .Nombre }}</li>
+        {{ end }}
+    </ul>
+</main>
+
+<!-- Fin contenido -->
+
+{{ template "pie"}}
