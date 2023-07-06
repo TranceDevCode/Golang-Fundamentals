@@ -21,6 +21,10 @@ func main() {
 	mux.HandleFunc("/parametros-querystring", rutas.ParametrosQueryString)
 	mux.HandleFunc("/estructuras", rutas.Estructuras)
 
+	//Rutas del formulario
+	mux.HandleFunc("/formularios", rutas.Formularios_get)
+	mux.HandleFunc("/formularios-post", rutas.Formularios_post).Methods("POST")
+
 	//Archivos estaticos hacia Mux
 	s := http.StripPrefix("/public/", http.FileServer(http.Dir("./public/")))
 	mux.PathPrefix("/public/").Handler(s)
