@@ -12,6 +12,8 @@ import (
 func Formularios_get(response http.ResponseWriter, request *http.Request) {
 	template := template.Must(template.ParseFiles("templates/formularios/formulario.html", utilidades.Fronted))
 	template.Execute(response, nil)
+	css_sesion, css_mensaje := utilidades.RetornarMensajeFlash(response, request)
+
 }
 
 func Formularios_post(response http.ResponseWriter, request *http.Request) {
@@ -30,8 +32,13 @@ func Formularios_post(response http.ResponseWriter, request *http.Request) {
 	}
 	//p2gHNiENUw
 	if mensaje != "" {
-		fmt.Fprintln(response, mensaje)
-		return
+		//fmt.Fprintln(response, mensaje)
+		//return
+
+		//Pasamos los mensajes de utilidades
+		utilidades.CrearMensajeFlash(response, request, "danger", mensaje)
+		//Luego hacemos redirect
+		http.Redirect(response, request, "/formularios", http.StatusSeeOther)
 	}
 	fmt.Fprint(response, "Nombre:"+request.FormValue("nombre")+" | E-Mail: "+request.FormValue("correo")+" | Telefono: "+request.FormValue("telefono")+" | Contrasena: "+request.FormValue("password"))
 

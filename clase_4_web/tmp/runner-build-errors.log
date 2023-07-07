@@ -1,2 +1,3 @@
-utilidades\utilidades.go:6:2: no required module provides package github.com/gorilla/sessions; to add it:
-	go get github.com/gorilla/sessions
+# clase_4_web/rutas
+rutas\formularios.go:15:2: css_sesion declared and not used
+rutas\formularios.go:15:14: css_mensaje declared and not used
